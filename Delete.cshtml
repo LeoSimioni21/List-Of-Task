@@ -1,0 +1,9 @@
+@model List_of_Task.Models.Todo
+
+<h1>@ViewData["Title"]</h1>
+<p>Excluir a tarefa <strong>@Model.Title</strong>?</p>
+
+<Form method="POST">
+    <button class="btn btn-danger" type="submit">Excluir</button>
+    <a asp-controller="Todo" asp-action="index" class="btn btn-primary">Cancelar</a>
+</Form>

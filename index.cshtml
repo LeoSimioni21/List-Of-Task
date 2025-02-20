@@ -1,0 +1,43 @@
+@model List<List_of_Task.Models.Todo>
+
+<h2>@ViewData["title"]</h1>
+
+@if(Model.Count > 0)
+{
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Título</th>
+      <th scope="col">Criado em</th>
+      <th scope="col">Data de entrega</th>
+      <th scope="col">Finalizado em</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach(var todo in Model)
+    {
+        <tr>
+            <td>@todo.Id</td>
+            <td>@todo.Title</td>
+            <td>@todo.CreatedAt</td>
+            <td>@todo.Daedline</td>
+            <td>
+              @(todo.FinisheAt.HasValue ? todo.FinisheAt : "-")
+            </td>
+            <td>
+              <a class="btn btn-success btn-sm">Concluir</a>
+              <a asp-controller="Todo" asp-action= "Edit" asp-route-id="@todo.Id" class="btn btn-warning btn-sm">Editar</a>
+              <a asp-controller="Todo" asp-action= "Delete" asp-route-id="@todo.Id" class="btn btn-danger btn-sm">Excluir</a>
+            </td>   
+        </tr>
+    }
+  </tbody>
+</table>
+}
+else 
+{
+  <p>Nenhuma tarefa cadastrada</p>
+}
+<a asp asp-controller="Todo" asp-action="Create" class="btn btn-primary">Nova tarefa</a>
